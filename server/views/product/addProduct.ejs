@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="h-[100vh] flex flex-col justify-center items-center bg-cyan-400">
+    <form
+      method="POST"
+      action="/product/addproduct"
+      class="flex flex-col items-center"
+    >
+      <label for="imageUrl">ImageUrl</label>
+      <input type="text" name="imageUrl" required />
+      <label for="originalPrice">originalPrice</label>
+      <input type="number" name="originalPrice" required />
+      <label for="currentPrice">currentPrice</label>
+      <input type="number" name="currentPrice" required />
+      <label for="ratingStar">ratingStar</label>
+      <input type="number" name="ratingStar" required />
+      <label for="ratingCount">ratingCount</label>
+      <input type="number" name="ratingCount" required />
+      <label for="brand">brand</label>
+      <input type="text" name="brand" required />
+      <label for="description">description</label>
+      <input type="text" name="description" required />
+      <label for="specialMessage">specialMessage</label>
+      <input type="text" name="specialMessage" required />
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

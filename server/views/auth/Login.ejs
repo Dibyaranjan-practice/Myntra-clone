@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="h-[100vh] flex flex-col justify-center items-center bg-cyan-400">
+    <% if(error){%> Email or password is invalid <%}%>
+    <form method="POST" action="/auth/login" class="flex flex-col items-center">
+      <label for="email">Email</label>
+      <input type="email" name="email" required />
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>New User?<a href="/auth/signup">Create Account</a></p>
+  </body>
+</html>

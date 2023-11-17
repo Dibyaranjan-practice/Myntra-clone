@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="h-[100vh] flex flex-col justify-center items-center bg-cyan-400">
+    <form
+      method="POST"
+      action="/auth/signup"
+      class="flex flex-col items-center"
+    >
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" required />
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" required />
+      <label for="email">Email</label>
+      <input type="text" name="email" required />
+      <label for="password">Password</label>
+      <input type="text" name="password" required />
+      <label for="confirmpassword">Confirm Password</label>
+      <input type="text" name="confirmpassword" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account?<a href="/auth/login">Login</a></p>
+  </body>
+</html>
