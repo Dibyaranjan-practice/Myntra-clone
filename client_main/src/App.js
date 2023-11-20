@@ -2,14 +2,40 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-import { BrowserRouter as Router } from "react-router-dom";
+import Cart from "./components/Cart";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import store from "./utils/store";
+import { Provider } from "react-redux";
+
 function App() {
   return (
-    <Router>
-      <Header />
-      <Main />
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <React.Fragment>
+                <Header />
+                <Main />
+                <Footer />
+              </React.Fragment>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <React.Fragment>
+                <Header />
+                <Cart />
+              </React.Fragment>
+            }
+          />
+          <Route path="*" element={<Header />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 

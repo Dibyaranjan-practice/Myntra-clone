@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "./../images/myntra_logo.webp";
 import HeaderNav from "./HeaderNav";
+import { useSelector } from "react-redux";
 
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -8,18 +10,25 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
 function Header() {
+  const cart = useSelector((store) => store.cart);
+  let cartLength = 0;
+  for (let i = 0; i < cart.length; i++) {
+    cartLength += cart[i].quantity;
+  }
   return (
-    <header className="header fixed top-0 left-0 flex justify-evenly items-center h-10 min-h-[80px] w-full">
+    <header className="header fixed top-0 left-0 flex justify-evenly items-center h-10 min-h-[80px] w-full z-50">
       <div className="logo w-[50px]">
-        <img src={Logo} alt="Myntra Home" />
+        <Link to="/">
+          <img src={Logo} alt="Myntra Home" />
+        </Link>
       </div>
       <nav className="header-nav bg-white h-[80px] w-[500px] flex justify-between items-center uppercase text-[14px]">
-        <HeaderNav title="Men" />
-        <HeaderNav title="Womens" />
-        <HeaderNav title="Kids" />
-        <HeaderNav title="Home & Living" />
-        <HeaderNav title="Beauty" />
-        <HeaderNav title="Studio" super="New" />
+        <HeaderNav title="Men" link="/men" />
+        <HeaderNav title="Women" link="/women" />
+        <HeaderNav title="Kids" link="/kids" />
+        <HeaderNav title="Home & Living" link="/home_and_living" />
+        <HeaderNav title="Beauty" link="/beauty" />
+        <HeaderNav title="Studio" super="New" link="/studio" />
       </nav>
       <div className="search_bar min-w-[30%] flex items-center border-none bg-inputBG rounded-md">
         <SearchIcon className="pl-2" style={{ fontSize: "2rem" }} />
@@ -30,17 +39,31 @@ function Header() {
         />
       </div>
       <div className="actions flex justify-between w-[200px] bg-white !important">
-        <div className="action-items flex flex-col items-center">
-          <PersonOutlineIcon />
-          Profile
+        <div className="action-items flex justify-center">
+          <Link to="/profile" className="flex flex-col items-center">
+            <PersonOutlineIcon />
+            Profile
+          </Link>
         </div>
         <div className="action-items flex flex-col items-center">
-          <FavoriteBorderIcon />
-          WishList
+          <Link to="/watchlist" className="flex flex-col items-center">
+            <FavoriteBorderIcon />
+            WishList
+          </Link>
         </div>
-        <div className="action-items flex flex-col items-center">
-          <WorkOutlineIcon />
-          Bag
+        <div className="action-items flex flex-col items-center relative top-0 left-0">
+          <Link to="/cart" className="flex flex-col">
+            <WorkOutlineIcon />
+            Bag
+          </Link>
+          {cartLength > 0 && (
+            <div
+              className="total_count flex justify-center items-center absolute right-0 -top-2 bg-super rounded-full h-[20px] w-[20px]"
+              style={{ backgroundColor: "red", color: "white" }}
+            >
+              {cartLength}
+            </div>
+          )}
         </div>
       </div>
     </header>

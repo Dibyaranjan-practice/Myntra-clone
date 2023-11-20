@@ -3,20 +3,28 @@ const express = require("express");
 const path = require("path");
 const multer = require("multer");
 const crypto = require("crypto");
+const cors = require("cors");
+const app = express();
 
 //route imports
+const apiRoutes = require("./routes/apiRoutes");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 
 //configs
 require("dotenv").config();
 require("ejs");
-const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+const corsOptions = {
+  origin: [process.env.ORIGIN, process.env.ORIGIN2],
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
@@ -29,10 +37,27 @@ const upload = multer({
 });
 
 //route handlers
+app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use(
   "/product",
-  upload.fields([{ name: "image1" }, { name: "image2" },{name:"image3"},{name:"image4"},{name:"image5"}]),
+  upload.fields([
+    {
+      name: "imageUrl1",
+    },
+    {
+      name: "imageUrl2",
+    },
+    {
+      name: "imageUrl3",
+    },
+    {
+      name: "imageUrl4",
+    },
+    {
+      name: "imageUrl5",
+    },
+  ]),
   productRoutes
 );
 app.use("/", (req, res, next) => {

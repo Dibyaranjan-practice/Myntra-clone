@@ -9,7 +9,23 @@ const Product = sequelize.define("Product", {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  imageUrl: {
+  imageUrl1: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl2: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl3: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl4: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl5: {
     type: DataTypes.STRING,
     allowNull: false,
   },

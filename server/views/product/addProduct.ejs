@@ -10,16 +10,15 @@
     <form
       method="POST"
       action="/product/addproduct"
+      enctype="multipart/form-data"
       class="flex flex-col items-center"
     >
-      <label for="imageUrl">ImageUrl</label>
-      <input type="text" name="imageUrl" required />
       <label for="originalPrice">originalPrice</label>
       <input type="number" name="originalPrice" required />
       <label for="currentPrice">currentPrice</label>
       <input type="number" name="currentPrice" required />
       <label for="ratingStar">ratingStar</label>
-      <input type="number" name="ratingStar" required />
+      <input type="number" name="ratingStar" step="0.1" required />
       <label for="ratingCount">ratingCount</label>
       <input type="number" name="ratingCount" required />
       <label for="brand">brand</label>
@@ -28,6 +27,16 @@
       <input type="text" name="description" required />
       <label for="specialMessage">specialMessage</label>
       <input type="text" name="specialMessage" required />
+      <label for="imageUrl1">Image1</label>
+      <input type="file" name="imageUrl1" accept="image/*" required />
+      <label for="imageUrl2">Image2</label>
+      <input type="file" name="imageUrl2" accept="image/*" required />
+      <label for="imageUrl3">Image3</label>
+      <input type="file" name="imageUrl3" accept="image/*" required />
+      <label for="imageUrl4">Image4</label>
+      <input type="file" name="imageUrl4" accept="image/*" required />
+      <label for="imageUrl5">Image5</label>
+      <input type="file" name="imageUrl5" accept="image/*" required />
       <button type="submit">Save</button>
     </form>
   </body>
