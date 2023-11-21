@@ -5,15 +5,18 @@ const WatchList = createSlice({
   initialState: [],
   reducers: {
     add(state, product) {
+      console.log("adding watchlist");
       product = product.payload;
-      let flag = true;
+      let index = null;
       for (let i = 0; i < state.length; i++) {
         if (state[i].id === product.id) {
-          flag = false;
+          index = i;
           break;
         }
       }
-      if (flag) {
+      if (index || index === 0) {
+        state.splice(index, 1);
+      } else {
         state.push(product);
       }
     },

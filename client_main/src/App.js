@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import store from "./utils/store";
 import { Provider } from "react-redux";
+import WatchList from "./components/watchlist/WatchList";
 
 function App() {
   return (
@@ -29,6 +30,15 @@ function App() {
               <React.Fragment>
                 <Header />
                 <Cart />
+              </React.Fragment>
+            }
+          />
+          <Route
+            path="/watchlist"
+            element={
+              <React.Fragment>
+                <Header />
+                <WatchList />
               </React.Fragment>
             }
           />
