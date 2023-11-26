@@ -1,30 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { BASE_URL } from "./../utils/constant.js";
+import { Link } from "react-router-dom";
 import { add } from "./../utils/slices/cartSlice.js";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { add as watch } from "./../utils/slices/watchSlice.js";
+import ImageArea from "./ImageArea.js";
 
-function MainCategoryItem({ product }) {
+function MainCategoryItem({ product, watch }) {
   const dispatch = useDispatch();
+  const url_path = `/product_details/${product.id}`;
   return (
-    <div className="category_items flex flex-col">
-      <div className="item_image relative top-0 left-0 z-10">
-        <img src={BASE_URL + product.imageUrl1} alt="not found" width="300px" />
-        <div className="rating absolute bottom-0 left-2">
-          <span>{product.ratingStar}⭐|</span>
-          <span>{product.ratingCount}</span>
-        </div>
-        <div
-          onClick={() => {
-            console.log("working");
-            dispatch(watch(product));
-          }}
-          className="wishlist absolute top-8 right-5 text-4xl flex justify-center items-center rounded-sm text-white z-[1000] cursor-pointer hover:bg-fuchsia-500"
-        >
-          <FavoriteBorderIcon fontSize="large" />
-        </div>
-      </div>
+    <Link to={url_path} className="category_items flex flex-col">
+      <ImageArea product={product} watch={watch} />
       <div className="company_name ml-2">{product.brand}</div>
       <div className="description ml-2">{product.description}</div>
       <div className="price ml-2">
@@ -41,7 +26,9 @@ function MainCategoryItem({ product }) {
       <button
         className="m-1 rounded-md"
         style={{ backgroundColor: "yellow" }}
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
           dispatch(add(product));
         }}
       >
@@ -50,7 +37,7 @@ function MainCategoryItem({ product }) {
       <button className="m-1 rounded-md" style={{ backgroundColor: "yellow" }}>
         Buy Now
       </button>
-    </div>
+    </Link>
   );
 }
 

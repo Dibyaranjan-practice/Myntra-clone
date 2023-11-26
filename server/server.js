@@ -5,11 +5,13 @@ const multer = require("multer");
 const crypto = require("crypto");
 const cors = require("cors");
 const app = express();
+const session = require("express-session");
 
 //route imports
 const apiRoutes = require("./routes/apiRoutes");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
+const clientRoutess = require("./routes/clientRoutes");
 
 //configs
 require("dotenv").config();
@@ -35,10 +37,24 @@ const upload = multer({
     },
   }),
 });
+app.use(
+  session({
+    secret: "just some demo keys",
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 //route handlers
 app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
+app.use("/client", clientRoutess);
+app.use((req, res, next) => {
+  if (req.session.isLoggedIn) {
+    next();
+  }
+  res.redirect("/auth/login");
+});
 app.use(
   "/product",
   upload.fields([

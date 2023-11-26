@@ -5,7 +5,6 @@ const WatchList = createSlice({
   initialState: [],
   reducers: {
     add(state, product) {
-      console.log("adding watchlist");
       product = product.payload;
       let index = null;
       for (let i = 0; i < state.length; i++) {

@@ -32,3 +32,7 @@ exports.getApiAll = async (req, res, next) => {
   const products = await Product.findAll();
   return res.json(products);
 };
+exports.getApiId = async (req, res, next) => {
+  const products = await Product.findByPk(req.params.id);
+  return res.json(products);
+};

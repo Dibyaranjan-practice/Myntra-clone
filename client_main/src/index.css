@@ -8,9 +8,12 @@
 }
 
 #root {
-  height: 100vh;
+  height: 97vh;
   width: 100vw;
 }
 header {
   background-color: white;
+}
+.active {
+  border-bottom: 2px solid red;
 }
